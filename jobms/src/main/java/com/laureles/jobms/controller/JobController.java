@@ -1,6 +1,6 @@
 package com.laureles.jobms.controller;
 
-import com.laureles.jobms.dto.JobWithCompanyDTO;
+import com.laureles.jobms.dto.JobDTO;
 import com.laureles.jobms.entity.Job;
 import com.laureles.jobms.service.JobService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class JobController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobWithCompanyDTO>> findAll(){
+    public ResponseEntity<List<JobDTO>> findAll(){
         return ResponseEntity.ok(jobService.findAll());
     }
 
@@ -32,11 +32,11 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobWithCompanyDTO> getJobById(@PathVariable("id") Long id) {
-        JobWithCompanyDTO jobWithCompanyDTO = jobService.getJobById(id);
+    public ResponseEntity<JobDTO> getJobById(@PathVariable("id") Long id) {
+        JobDTO jobDTO = jobService.getJobById(id);
 
-        if (jobWithCompanyDTO != null) {
-            return new ResponseEntity<>(jobWithCompanyDTO, HttpStatus.OK);
+        if (jobDTO != null) {
+            return new ResponseEntity<>(jobDTO, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

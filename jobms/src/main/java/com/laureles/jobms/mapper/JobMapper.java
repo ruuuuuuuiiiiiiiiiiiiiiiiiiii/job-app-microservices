@@ -1,25 +1,27 @@
 package com.laureles.jobms.mapper;
 
-import com.laureles.jobms.dto.JobWithCompanyDTO;
+import com.laureles.jobms.dto.JobDTO;
 import com.laureles.jobms.entity.Job;
 import com.laureles.jobms.entity.external.Company;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
+import com.laureles.jobms.entity.external.Review;
+
+import java.util.List;
 
 public class JobMapper {
 
-    public static JobWithCompanyDTO mapToJobWithCompanyDTO(Job job, Company company) {
-        JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
+    public static JobDTO mapToJobWithCompanyDTO(Job job, Company company, List<Review> reviews) {
+        JobDTO jobDTO = new JobDTO();
 
-        jobWithCompanyDTO.setId(job.getId());
-        jobWithCompanyDTO.setTitle(job.getTitle());
-        jobWithCompanyDTO.setDescription(job.getDescription());
-        jobWithCompanyDTO.setMinSalary(job.getMinSalary());
-        jobWithCompanyDTO.setMaxSalary(job.getMaxSalary());
-        jobWithCompanyDTO.setSalary(job.getSalary());
-        jobWithCompanyDTO.setLocation(job.getLocation());
-        jobWithCompanyDTO.setCompany(company);
+        jobDTO.setId(job.getId());
+        jobDTO.setTitle(job.getTitle());
+        jobDTO.setDescription(job.getDescription());
+        jobDTO.setMinSalary(job.getMinSalary());
+        jobDTO.setMaxSalary(job.getMaxSalary());
+        jobDTO.setSalary(job.getSalary());
+        jobDTO.setLocation(job.getLocation());
+        jobDTO.setCompany(company);
+        jobDTO.setReviews(reviews);
 
-        return jobWithCompanyDTO;
+        return jobDTO;
     }
 }

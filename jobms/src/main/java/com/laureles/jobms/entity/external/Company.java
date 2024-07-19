@@ -3,11 +3,8 @@ package com.laureles.jobms.entity.external;
 public class Company {
 
     private Long id;
-
     private String companyName;
-
     private String companyDescription;
-
     private String companyLocation;
 
     public Long getId() {

@@ -21,14 +21,18 @@ public class Company {
     @Column(name = "companyLocation")
     private String companyLocation;
 
+    @Column(name = "companyRating")
+    private Double companyRating;
+
     public Company() {
     }
 
-    public Company(Long id, String companyName, String companyDescription, String companyLocation) {
+    public Company(Long id, String companyName, String companyDescription, String companyLocation, Double companyRating) {
         this.id = id;
         this.companyName = companyName;
         this.companyDescription = companyDescription;
         this.companyLocation = companyLocation;
+        this.companyRating = companyRating;
     }
 
     public Long getId() {
@@ -63,4 +67,11 @@ public class Company {
         this.companyLocation = companyLocation;
     }
 
+    public Double getCompanyRating() {
+        return companyRating;
+    }
+
+    public void setCompanyRating(Double companyRating) {
+        this.companyRating = companyRating;
+    }
 }

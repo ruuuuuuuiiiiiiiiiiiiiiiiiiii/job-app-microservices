@@ -1,6 +1,7 @@
 package com.laureles.reviewms.controller;
 
 import com.laureles.reviewms.entity.Review;
+import com.laureles.reviewms.messaging.ReviewMessageProducer;
 import com.laureles.reviewms.service.ReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import java.util.List;
 public class ReviewController {
 
     private ReviewService reviewService;
+    private ReviewMessageProducer reviewMessageProducer;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController(ReviewService reviewService, ReviewMessageProducer reviewMessageProducer) {
         this.reviewService = reviewService;
+        this.reviewMessageProducer = reviewMessageProducer;
     }
 
     @GetMapping
@@ -39,6 +42,8 @@ public class ReviewController {
         boolean isCreated = reviewService.createReview(companyId, review);
 
         if (isCreated) {
+            reviewMessageProducer.sendMessage(review);
+
             return new ResponseEntity<>("Created Successfully!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Review Not Created!", HttpStatus.BAD_REQUEST);
@@ -67,6 +72,14 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/averageRating")
+    public Double getAverageReview(@RequestParam Long companyId) {
+        List<Review> reviewList = reviewService.getAllReviews(companyId);
 
+        return reviewList.stream()
+                .mapToDouble(Review::getRating)
+                .average()
+                .orElse(0.0);
+    }
 
 }

@@ -24,6 +24,7 @@ public class JobController {
         return ResponseEntity.ok(jobService.findAll());
     }
 
+    // dev issue: can add job with not existing company -- to fix
     @PostMapping
     public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobService.createJob(job);

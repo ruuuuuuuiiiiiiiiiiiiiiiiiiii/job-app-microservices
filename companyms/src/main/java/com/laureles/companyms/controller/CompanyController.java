@@ -2,21 +2,19 @@ package com.laureles.companyms.controller;
 
 import com.laureles.companyms.service.CompanyService;
 import com.laureles.companyms.entity.Company;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/companies")
 public class CompanyController {
 
     private CompanyService companyService;
-
-    public CompanyController(CompanyService companyService) {
-        this.companyService = companyService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Company>> getAllCompanies() {

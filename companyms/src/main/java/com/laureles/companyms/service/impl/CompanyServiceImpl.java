@@ -6,21 +6,18 @@ import com.laureles.companyms.entity.Company;
 import com.laureles.companyms.repository.CompanyRepository;
 import com.laureles.companyms.service.CompanyService;
 import jakarta.ws.rs.NotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
     private CompanyRepository companyRepository;
     private ReviewClient reviewClient;
-
-    public CompanyServiceImpl(CompanyRepository companyRepository, ReviewClient reviewClient) {
-        this.companyRepository = companyRepository;
-        this.reviewClient = reviewClient;
-    }
 
     @Override
     public List<Company> getAllCompanies() {

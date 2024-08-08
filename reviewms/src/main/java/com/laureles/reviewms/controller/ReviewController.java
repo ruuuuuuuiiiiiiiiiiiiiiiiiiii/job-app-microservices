@@ -3,23 +3,20 @@ package com.laureles.reviewms.controller;
 import com.laureles.reviewms.entity.Review;
 import com.laureles.reviewms.messaging.ReviewMessageProducer;
 import com.laureles.reviewms.service.ReviewService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/reviews")
 public class ReviewController {
 
     private ReviewService reviewService;
     private ReviewMessageProducer reviewMessageProducer;
-
-    public ReviewController(ReviewService reviewService, ReviewMessageProducer reviewMessageProducer) {
-        this.reviewService = reviewService;
-        this.reviewMessageProducer = reviewMessageProducer;
-    }
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews(@RequestParam("companyId") Long companyId) {

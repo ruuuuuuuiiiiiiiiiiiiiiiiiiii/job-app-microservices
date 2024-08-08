@@ -3,18 +3,17 @@ package com.laureles.reviewms.service.impl;
 import com.laureles.reviewms.entity.Review;
 import com.laureles.reviewms.repository.ReviewRepository;
 import com.laureles.reviewms.service.ReviewService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
     private ReviewRepository reviewRepository;
 
-    public ReviewServiceImpl(ReviewRepository reviewRepository) {
-        this.reviewRepository = reviewRepository;
-    }
 
     @Override
     public List<Review> getAllReviews(Long companyId) {

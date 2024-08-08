@@ -12,6 +12,7 @@ import com.laureles.jobms.service.JobService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
@@ -25,22 +26,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class JobServiceImpl implements JobService {
     private JobRepository jobRepository;
 
     @Autowired
     RestTemplate restTemplate;
+
     private CompanyClient companyClient;
     private ReviewClient reviewClient;
-
-    int attempt = 0;
-
-    public JobServiceImpl(JobRepository jobRepository, CompanyClient companyClient, ReviewClient reviewClient) {
-        this.jobRepository = jobRepository;
-        this.companyClient = companyClient;
-        this.reviewClient = reviewClient;
-    }
 
     private JobDTO convertToDto(Job job) {
 
@@ -80,9 +75,7 @@ public class JobServiceImpl implements JobService {
             fallbackMethod = "companyBreakerFallback")
     public List<JobDTO> findAll() {
 
-        System.out.println("Attempt: "+ ++attempt);
         List<Job> jobs = jobRepository.findAll();
-        List<JobDTO> jobDTOS = new ArrayList<>();
 
         return jobs.stream().map(this::convertToDto)
                 .collect(Collectors.toList());

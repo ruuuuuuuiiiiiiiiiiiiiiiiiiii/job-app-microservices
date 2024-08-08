@@ -3,21 +3,19 @@ package com.laureles.jobms.controller;
 import com.laureles.jobms.dto.JobDTO;
 import com.laureles.jobms.entity.Job;
 import com.laureles.jobms.service.JobService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/jobs")
 public class JobController {
 
     private JobService jobService;
-
-    public JobController(JobService jobService) {
-        this.jobService = jobService;
-    }
 
     @GetMapping
     public ResponseEntity<List<JobDTO>> findAll(){

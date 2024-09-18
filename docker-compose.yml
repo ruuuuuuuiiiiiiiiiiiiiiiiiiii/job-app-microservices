@@ -43,8 +43,13 @@ services:
   #      timeout: 30s
 
   companyms:
+    build:
+      context: ./companyms
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_companyms:v0.0.1"
     container_name: company-ms
-    image: louielaureles023/jobapp_companyms:latest
+    image: louielaureles023/jobapp_companyms:v0.0.1
     ports:
       - 2021:2021
     depends_on:
@@ -57,8 +62,13 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   jobms:
+    build:
+      context: ./jobms
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_jobms:v0.0.1"
     container_name: job-ms
-    image: louielaureles023/jobapp_jobms:latest
+    image: louielaureles023/jobapp_jobms:v0.0.1
     ports:
       - 2022:2022
     depends_on:
@@ -72,8 +82,13 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-reg:8761/eureka
 
   reviewms:
+    build:
+      context: ./reviewms
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_reviewms:v0.0.1"
     container_name: review-ms
-    image: louielaureles023/jobapp_reviewms:latest
+    image: louielaureles023/jobapp_reviewms:v0.0.1
     ports:
       - 2023:2023
     depends_on:
@@ -86,8 +101,13 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   service-reg:
+    build:
+      context: ./service-reg
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_service-reg:v0.0.1"
     container_name: service-reg
-    image: louielaureles023/jobapp_service-reg:latest
+    image: louielaureles023/jobapp_service-reg:v0.0.1
     ports:
       - "8761:8761"
     depends_on:
@@ -100,8 +120,13 @@ services:
       - postgres-network
 
   config-server-ms:
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_config-server-ms:v0.0.1"
     container_name: config-server-ms
-    image: louielaureles023/jobapp_config-server-ms:latest
+    image: louielaureles023/jobapp_config-server-ms:v0.0.1
     ports:
       - 2020:2020
     depends_on:
@@ -113,8 +138,13 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   gateway-ms:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+      tags:
+        - "louielaureles023/jobapp_gateway-ms:v0.0.1"
     container_name: gateway-ms
-    image: louielaureles023/jobapp_gateway-ms:latest
+    image: louielaureles023/jobapp_gateway-ms:v0.0.1
     ports:
       - 2024:2024
     depends_on:

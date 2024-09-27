@@ -1,47 +1,5 @@
 version: '3.3.1'
 services:
-  #  job-app:
-  #    container_name: job-app
-  #    image: louielaureles023/job-app
-  #    build:
-  #      context: .
-  #      dockerfile: Dockerfile
-  ##    restart: always
-  #    restart: unless-stopped
-  #    ports:
-  #      - 8080:8080
-  ##    depends_on:
-  ##      mysql:
-  ##        condition: service_healthy
-  #    depends_on:
-  #      postgres:
-  #        condition: service_healthy
-  ##    environment:
-  ###      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3307/job_app
-  ##      SPRING_DATASOURCE_USERNAME: root
-  ##      SPRING_DATASOURCE_PASSWORD: root
-  #    networks:
-  #      - job-app-network
-
-  #  mysql:
-  #    container_name: mysql-db
-  #    image: mysql:8.3.0
-  #    environment:
-  #       MYSQL_ROOT_PASSWORD: root
-  #       MYSQL_DATABASE: job_app
-  ##    restart: always
-  #    ports:
-  #      - 3307:3306
-  #    volumes:
-  #      - my-db:/var/lib/mysql
-  #    networks:
-  #      - job-app-network
-  #    healthcheck:
-  #      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-  #      retries: 10
-  #      interval: 3s
-  #      timeout: 30s
-
   companyms:
     build:
       context: ./companyms

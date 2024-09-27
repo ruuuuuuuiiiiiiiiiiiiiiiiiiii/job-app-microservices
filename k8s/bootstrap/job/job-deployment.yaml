@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: jobms
-          image: louielaureles023/jobapp_jobms:latest
+          image: louielaureles023/jobapp_jobms:v0.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 2022

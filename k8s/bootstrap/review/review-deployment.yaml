@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: reviewms
-          image: louielaureles023/jobapp_reviewms:latest
+          image: louielaureles023/jobapp_reviewms:v0.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 2023
